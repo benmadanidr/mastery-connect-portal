@@ -2,41 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* نظام التصميم لأكاديمية الإتقان التعليمية - جميع الألوان بتنسيق HSL */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* خلفيات أساسية */
+    --background: 120 25% 98%;
+    --foreground: 150 25% 15%;
 
+    /* البطاقات والعناصر */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 150 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 150 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* الألوان الأساسية - أخضر تعليمي راقي */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 70% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* الألوان الثانوية - ذهبي أنيق */
+    --secondary: 45 100% 85%;
+    --secondary-foreground: 150 25% 15%;
+    --secondary-accent: 42 87% 55%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* ألوان مساعدة */
+    --muted: 120 20% 95%;
+    --muted-foreground: 150 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 42 87% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* حدود وإدخالات */
+    --border: 120 15% 85%;
+    --input: 120 15% 92%;
+    --ring: 142 76% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* تدرجات جميلة */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary-accent)), hsl(var(--secondary)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
+    
+    /* ظلال أنيقة */
+    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.1);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.3);
+    --shadow-card: 0 8px 25px -5px hsl(var(--primary) / 0.1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +116,67 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    direction: rtl;
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* خطوط عربية جميلة */
+  .font-arabic {
+    font-family: 'Amiri', 'Cairo', serif;
+  }
+
+  /* انتقالات سلسة */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* تأثيرات التمرير */
+  .hover-lift {
+    @apply transition-smooth hover:scale-105 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-smooth hover:shadow-[0_0_20px_hsl(var(--primary-glow)/0.4)];
+  }
+
+  /* تخطيط عربي */
+  .container-rtl {
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+@layer components {
+  /* أزرار بتدرجات جميلة */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground;
+    @apply hover:from-primary-glow hover:to-accent transition-smooth;
+    @apply shadow-lg hover:shadow-glow hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary-accent to-secondary text-secondary-foreground;
+    @apply hover:from-accent hover:to-secondary-accent transition-smooth;
+    @apply shadow-md hover:shadow-lg hover:scale-105;
+  }
+
+  /* بطاقات أنيقة */
+  .card-elegant {
+    @apply bg-card rounded-xl border border-border shadow-card;
+    @apply hover:shadow-glow transition-smooth hover:-translate-y-1;
+  }
+
+  /* خلفيات متدرجة */
+  .bg-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-primary-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .bg-secondary-gradient {
+    background: var(--gradient-secondary);
   }
 }
