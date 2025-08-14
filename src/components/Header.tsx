@@ -17,17 +17,22 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-primary/20 bg-academic-gradient/95 backdrop-blur-md shadow-soft">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* الشعار واسم الأكاديمية */}
-          <Link to="/" className="flex items-center space-x-3 space-x-reverse">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-gradient">
-              <GraduationCap className="h-6 w-6 text-white" />
+          <Link to="/" className="flex items-center space-x-4 space-x-reverse group">
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/9d677575-10db-41d7-8ff6-59ba6aad2276.png" 
+                alt="شعار أكاديمية الإتقان التعليمية" 
+                className="w-14 h-14 rounded-full shadow-gold group-hover:scale-105 transition-smooth border-2 border-secondary-accent/40"
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent to-primary/10 group-hover:from-secondary-accent/20 transition-smooth"></div>
             </div>
             <div className="text-right">
-              <h1 className="text-lg font-bold text-primary">أكاديمية الإتقان</h1>
-              <p className="text-xs text-muted-foreground">التعليمية</p>
+              <h1 className="text-xl font-bold text-primary-foreground font-arabic">أكاديمية الإتقان</h1>
+              <p className="text-sm text-primary-light">التعليمية - دار الشيوخ - الجلفة</p>
             </div>
           </Link>
 
@@ -37,16 +42,16 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`relative text-sm font-medium transition-colors hover:text-primary ${
+                className={`relative text-sm font-medium transition-colors hover:text-secondary-accent group ${
                   location.pathname === item.href
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                    ? "text-secondary-accent"
+                    : "text-primary-foreground/90"
                 }`}
               >
                 {item.name}
-                {location.pathname === item.href && (
-                  <span className="absolute -bottom-2 left-0 h-0.5 w-full bg-primary rounded-full" />
-                )}
+                <div className={`absolute bottom-0 left-0 h-0.5 bg-gold-gradient transition-all duration-300 ${
+                  location.pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}></div>
               </Link>
             ))}
           </nav>

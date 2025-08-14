@@ -6,68 +6,66 @@
 
 @layer base {
   :root {
-    /* خلفيات أساسية */
-    --background: 120 25% 98%;
-    --foreground: 150 25% 15%;
+    /* خلفيات أساسية - مستوحاة من شعار المدرسة */
+    --background: 210 25% 98%;
+    --foreground: 215 25% 15%;
 
     /* البطاقات والعناصر */
     --card: 0 0% 100%;
-    --card-foreground: 150 25% 15%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 150 25% 15%;
+    --popover-foreground: 215 25% 15%;
 
-    /* الألوان الأساسية - أخضر تعليمي راقي */
-    --primary: 142 76% 36%;
+    /* الألوان الأساسية - أزرق أكاديمي من الشعار */
+    --primary: 215 60% 25%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 142 70% 45%;
+    --primary-glow: 200 65% 55%;
+    --primary-light: 200 80% 85%;
 
-    /* الألوان الثانوية - ذهبي أنيق */
-    --secondary: 45 100% 85%;
-    --secondary-foreground: 150 25% 15%;
-    --secondary-accent: 42 87% 55%;
+    /* الألوان الثانوية - ذهبي راقي من الشعار */
+    --secondary: 45 95% 88%;
+    --secondary-foreground: 215 25% 15%;
+    --secondary-accent: 42 90% 60%;
+    --secondary-dark: 40 85% 45%;
 
     /* ألوان مساعدة */
-    --muted: 120 20% 95%;
-    --muted-foreground: 150 15% 45%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 42 87% 55%;
+    --accent: 42 90% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
     /* حدود وإدخالات */
-    --border: 120 15% 85%;
-    --input: 120 15% 92%;
-    --ring: 142 76% 36%;
+    --border: 210 15% 88%;
+    --input: 210 15% 94%;
+    --ring: 215 60% 25%;
 
     --radius: 0.75rem;
 
-    /* تدرجات جميلة */
+    /* تدرجات مستوحاة من الشعار */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary-accent)), hsl(var(--secondary)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--secondary-accent)) 100%);
+    --gradient-academic: linear-gradient(45deg, hsl(var(--primary)) 0%, hsl(215 50% 35%) 50%, hsl(var(--primary-glow)) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(var(--secondary-accent)), hsl(var(--secondary-dark)));
     
     /* ظلال أنيقة */
-    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.1);
-    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.3);
-    --shadow-card: 0 8px 25px -5px hsl(var(--primary) / 0.1);
+    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.12);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.25);
+    --shadow-card: 0 10px 30px -8px hsl(var(--primary) / 0.15);
+    --shadow-gold: 0 8px 25px hsl(var(--secondary-accent) / 0.3);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -148,23 +146,44 @@
 }
 
 @layer components {
-  /* أزرار بتدرجات جميلة */
+  /* أزرار بتدرجات جميلة مستوحاة من الشعار */
   .btn-hero {
     @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground;
-    @apply hover:from-primary-glow hover:to-accent transition-smooth;
+    @apply hover:from-primary-glow hover:to-secondary-accent transition-smooth;
     @apply shadow-lg hover:shadow-glow hover:scale-105;
+    @apply border border-secondary-accent/20;
   }
 
   .btn-secondary {
-    @apply bg-gradient-to-r from-secondary-accent to-secondary text-secondary-foreground;
-    @apply hover:from-accent hover:to-secondary-accent transition-smooth;
-    @apply shadow-md hover:shadow-lg hover:scale-105;
+    @apply bg-gradient-to-r from-secondary-accent to-secondary-dark text-accent-foreground;
+    @apply hover:from-secondary-dark hover:to-secondary-accent transition-smooth;
+    @apply shadow-md hover:shadow-gold hover:scale-105;
+  }
+
+  .btn-academic {
+    background: var(--gradient-academic);
+    @apply text-primary-foreground border border-primary-glow/30;
+    @apply hover:shadow-glow transition-smooth hover:scale-105;
   }
 
   /* بطاقات أنيقة */
   .card-elegant {
     @apply bg-card rounded-xl border border-border shadow-card;
     @apply hover:shadow-glow transition-smooth hover:-translate-y-1;
+    @apply relative overflow-hidden;
+  }
+
+  .card-academic {
+    @apply bg-gradient-to-br from-card to-primary-light/10;
+    @apply border border-primary/20 rounded-xl shadow-card;
+    @apply hover:shadow-glow transition-smooth hover:-translate-y-2;
+    @apply relative overflow-hidden;
+  }
+
+  .card-academic::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1;
+    background: var(--gradient-gold);
   }
 
   /* خلفيات متدرجة */
@@ -178,5 +197,28 @@
 
   .bg-secondary-gradient {
     background: var(--gradient-secondary);
+  }
+
+  .bg-academic-gradient {
+    background: var(--gradient-academic);
+  }
+
+  .bg-gold-gradient {
+    background: var(--gradient-gold);
+  }
+
+  /* تأثيرات خاصة */
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gold-gradient {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
