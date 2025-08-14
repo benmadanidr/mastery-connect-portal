@@ -88,6 +88,11 @@ export default {
 					}
 				}
 			},
+			boxShadow: {
+				'soft': '0 4px 20px hsl(var(--primary) / 0.1)',
+				'glow': '0 0 30px hsl(var(--primary-glow) / 0.3)',
+				'card': '0 8px 25px -5px hsl(var(--primary) / 0.1)'
+			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
